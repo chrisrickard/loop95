@@ -2,6 +2,8 @@
 
 A Windows 95-style browser step sequencer. Single HTML file, no dependencies.
 
+**[Play online](https://chrisrickard.github.io/loop95/)**
+
 ![Loops95 screenshot](img/loops95.png)
 
 Written by **Claude Fable**.
@@ -16,7 +18,7 @@ Written by **Claude Fable**.
 
 ## Run
 
-Open `index.html` in your browser.
+Open [loops95 online](https://chrisrickard.github.io/loop95/), or open `index.html` locally in your browser.
 
 ## Controls
 
