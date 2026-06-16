@@ -19,10 +19,3 @@ Written by **Claude Fable**.
 ## Run
 
 Open [loops95 online](https://chrisrickard.github.io/loop95/), or open `index.html` locally in your browser.
-
-## Controls
-
-- **Click** a step to toggle it on/off
-- **Right-click** a step to change the note (+1, shift for -1)
-- **Drag** to paint steps
-- **Space** to play/pause
