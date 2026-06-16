@@ -14,15 +14,9 @@ Written by **Claude Fable**.
 - Winamp-style spectrum analyzer and oscilloscope
 - Classic Win95 look and feel
 
-## Run locally
+## Run
 
-```bash
-python3 -m http.server 8642
-```
-
-Open [http://localhost:8642](http://localhost:8642) in your browser.
-
-Or open `index.html` directly - some browsers restrict Web Audio on `file://` URLs, so a local server is recommended.
+Open `index.html` in your browser.
 
 ## Controls
 
