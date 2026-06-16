@@ -587,6 +587,13 @@ function trigger(chId, t, note){
   VOICES[chId](chGain[chId], t, note);
 }
 
+function audition(chId, note){
+  ensureAudio();
+  trigger(chId, AC.currentTime, note);
+  vizPeaks = [];
+  vizAuditionUntil = performance.now() + 900;
+}
+
 /* ============================================================
    State
    ============================================================ */
@@ -685,7 +692,7 @@ const vizCv = document.getElementById('vizcanvas');
 const vizCtx = vizCv.getContext('2d');
 const VIZ_BARS = 60;
 let vizMode = 'spectrum', vizPeaks = [], vizFreq = null, vizWave = null, vizGrad = null;
-let vizPreviewUntil = 0;
+let vizPreviewUntil = 0, vizAuditionUntil = 0;
 
 function previewViz(){
   vizPeaks = [];
@@ -712,7 +719,7 @@ function drawViz(){
   const ctx = vizCtx;
   const now = performance.now();
   const demoViz = !playing && now < vizPreviewUntil;
-  const liveViz = playing && analyser;
+  const liveViz = analyser && (playing || now < vizAuditionUntil);
   const t = now * 0.002;
   ctx.fillStyle = '#0c0e12'; ctx.fillRect(0,0,w,h);
 
@@ -823,7 +830,7 @@ function buildRack(){
     const btn = document.createElement('button');
     btn.className = 'chbtn'; btn.textContent = c.name;
     btn.title = 'Preview ' + c.name;
-    btn.onclick = () => { ensureAudio(); trigger(c.id, AC.currentTime, c.defNote); };
+    btn.onclick = () => audition(c.id, c.defNote);
     const led = document.createElement('span');
     led.className = 'chled'; led.dataset.ch = c.id;
     const steps = document.createElement('div');
@@ -868,7 +875,7 @@ el('rackgrid').addEventListener('contextmenu', e=>{
   let v = (cur || s.c.defNote-d) + d;
   if (v>hi) v=lo; if (v<lo) v=hi;
   setStep(s, v);
-  ensureAudio(); trigger(s.c.id, AC.currentTime, v);
+  audition(s.c.id, v);
 });
 
 function renderStep(node, c, v){
